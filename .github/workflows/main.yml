@@ -1,0 +1,12 @@
+on: [workflow_dispatch]
+
+jobs:
+  provision_aws_eks_cluster:
+    runs-on: ubuntu-latest
+    name: Provision an AWS EKS cluster
+    steps:
+      - name: Provision AWS EKS
+        id: aws-eks-provisioner
+        uses: ulvestuen/aws-eks-provisioner@v1
+        with:
+          args: ${{ secrets.TF_API_TOKEN }}
