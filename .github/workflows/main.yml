@@ -5,8 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Provision an AWS EKS cluster
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Provision AWS EKS
         id: aws-eks-provisioner
-        uses: ulvestuen/aws-eks-provisioner@v1.0.1
+        uses: ./
         with:
           args: ${{ secrets.TF_API_TOKEN }}
