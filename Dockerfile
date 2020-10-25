@@ -6,7 +6,6 @@ RUN apt-get update && apt-get -y install curl gnupg software-properties-common &
     apt-get update && apt-get -y install terraform && \
     rm -rf /var/lib/apt/lists/*
 
-ADD ./ /aws-eks-provisioner
-WORKDIR /aws-eks-provisioner
+ADD ./ ./
 
 ENTRYPOINT ["./entrypoint.sh"]
