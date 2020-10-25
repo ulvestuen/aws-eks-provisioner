@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Provision AWS EKS
         id: aws-eks-provisioner
-        uses: ulvestuen/aws-eks-provisioner@v1
+        uses: ulvestuen/aws-eks-provisioner@v1.0.1
         with:
           args: ${{ secrets.TF_API_TOKEN }}
