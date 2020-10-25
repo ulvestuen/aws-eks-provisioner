@@ -1,12 +1,6 @@
 # action.yml
 name: 'AWS EKS Provisioner'
 description: 'Provision a new AWS EKS cluster'
-inputs:
-  tf_api_token:
-    description: 'API Token for Terraform Cloud'
-    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.tf_api_token }}

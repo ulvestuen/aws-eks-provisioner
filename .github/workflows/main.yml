@@ -10,5 +10,5 @@ jobs:
       - name: Provision AWS EKS
         id: aws-eks-provisioner
         uses: ./
-        with:
-          args: ${{ secrets.TF_API_TOKEN }}
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
