@@ -12,3 +12,7 @@ jobs:
         uses: ./
         env:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          INSTANCE_TYPE: m4.large
+          ASG_DESIRED_CAPACITY: 1
+          ASG_MAX_SIZE: 3
+          ASG_MIN_SIZE: 1
