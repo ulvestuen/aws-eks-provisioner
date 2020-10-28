@@ -1,6 +1,11 @@
 # action.yml
 name: 'AWS EKS Provisioner'
 description: 'Provision a new AWS EKS cluster'
+outputs:
+  region:
+    description: 'The AWS region in which the AWS cluster was provisioned'
+  cluster_name:
+    description: 'The name of the provisioned AWS EKS cluster'
 runs:
   using: 'docker'
   image: 'Dockerfile'
