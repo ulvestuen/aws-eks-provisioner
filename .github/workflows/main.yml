@@ -1,0 +1,20 @@
+on: [workflow_dispatch]
+
+jobs:
+  provision_aws_eks_cluster:
+    runs-on: ubuntu-latest
+    name: Provision an AWS EKS cluster
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Provision AWS EKS
+        id: aws-eks-provisioner
+        uses: ./
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          INSTANCE_TYPE: m4.large
+          ASG_DESIRED_CAPACITY: 1
+          ASG_MAX_SIZE: 3
+          ASG_MIN_SIZE: 1
+      - name: Print command for updating local kubeconfig for connection to the provisioned EKS cluster
+        run: echo "aws eks --region ${{ steps.aws-eks-provisioner.outputs.region }} update-kubeconfig --name ${{ steps.aws-eks-provisioner.outputs.cluster_name }}"

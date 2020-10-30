@@ -5,7 +5,7 @@ module "eks" {
   subnets = module.vpc.private_subnets
 
   tags = {
-    Environment = "aws-eks-test"
+    Environment = "test"
   }
 
   vpc_id = module.vpc.vpc_id
@@ -13,11 +13,13 @@ module "eks" {
   worker_groups = [
     {
       name = "worker-group-1"
-      instance_type = "t2.small"
-      additional_userdata = "echo something"
-      asg_desired_capacity = 2
+      instance_type = "INSTANCE_TYPE"
+      asg_desired_capacity = "ASG_DESIRED_CAPACITY"
+      asg_max_size = "ASG_MAX_SIZE"
+      asg_min_size = "ASG_MIN_SIZE"
       additional_security_group_ids = [
-        aws_security_group.worker_group_mgmt.id]
+        aws_security_group.worker_group_mgmt.id
+      ]
     }
   ]
 }

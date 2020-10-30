@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-east-2"
+  default = "AWS_REGION"
   description = "AWS region"
 }
 
@@ -10,7 +10,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "aws-eks-test-${random_string.suffix.result}"
+  cluster_name = "${var.backend_workspace}-${random_string.suffix.result}"
 }
 
 resource "random_string" "suffix" {
@@ -21,7 +21,7 @@ resource "random_string" "suffix" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "aws-eks-test-vpc"
+  name = "${var.backend_workspace}-vpc"
   cidr = "10.0.0.0/16"
   azs = data.aws_availability_zones.available.names
   private_subnets = [
